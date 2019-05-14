@@ -30,22 +30,22 @@
         <?php 
            
           
-           $n=700;
-          for($i=1; $i<$n; $i++){
+           $count=0;
         $conn = mysqli_connect("localhost","root","");
 	    $db= mysqli_select_db($conn,"survey");
-        $sql = "select * from question where id=$i and s_name='$s_name' ";
+        $sql = "select * from question where s_name='$s_name' ";
 	    $query = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_array($query)){
+        count++;
         ?>
-        <h4><?php echo $i; ?>.&nbsp;<?php echo $row[1] ?></h4>
+        <h4><?php echo $count; ?>.&nbsp;<?php echo $row[1] ?></h4>
         <input required type="radio" name="answer[<?php echo $row['id']; ?>]" value="<?php echo $row[2] ?>"><?php echo $row[2] ?>
         <input required type="radio" name="answer[<?php echo $row['id']; ?>]" value="<?php echo $row[3] ?>"><?php echo $row[3] ?>
         <input required type="radio" name="answer[<?php echo $row['id']; ?>]" value="<?php echo $row[4] ?>"><?php echo $row[4] ?>
         <input required type="radio" name="answer[<?php echo $row['id']; ?>]" value="<?php echo $row[5] ?>"><?php echo $row[5] ?><br />   <br />    
            <?php
         }
-            }
+            
            ?>
         <input type="submit" name="Submit" value="Submit" class="submit" style="border: none;background-color: green;width:auto;height: auto;color: #fff; cursor:pointer;font-size: 18px; margin-left:80px ">
 	</form>
